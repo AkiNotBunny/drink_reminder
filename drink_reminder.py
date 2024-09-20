@@ -20,7 +20,7 @@ import os
 gif_path = os.path.join(os.path.dirname(__file__), 'cat-broken-cat.gif')
 icon_path = os.path.join(os.path.dirname(__file__), 'drink.ico')
 
-reminder_interval = 15000
+reminder_interval = 60000  # milliseconds = 1 minute
 scheduled_job = None
 
 
@@ -95,7 +95,7 @@ def open_settings():
     def save_settings():
         global reminder_interval, scheduled_job
         try:
-            new_interval = int(entry.get()) * 1000  # Convert seconds to milliseconds
+            new_interval = int(entry.get()) * 60000  # Convert minutes to milliseconds
             if new_interval > 0:
                 reminder_interval = new_interval
                 if scheduled_job:  # Cancel the existing scheduled job
@@ -107,11 +107,11 @@ def open_settings():
         except ValueError:
             messagebox.showerror("Error", "Invalid input. Please enter a number.")
 
-    label = tk.Label(settings_window, text="Set reminder interval (seconds):")
+    label = tk.Label(settings_window, text="Set reminder interval (minutes):")
     label.pack(pady=10)
 
     entry = tk.Entry(settings_window)
-    entry.insert(0, str(reminder_interval // 1000))  # Default to current interval in seconds
+    entry.insert(0, str(reminder_interval // 60000))  # Default to current interval in minutes
     entry.pack(pady=10)
 
     save_button = tk.Button(settings_window, text="Save", command=save_settings)
