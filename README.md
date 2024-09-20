@@ -10,7 +10,7 @@ Libraries: Tkinter, Pillow, Pystray, Schedule.
 
 - **System Tray Icon**: Minimizes to the system tray with an option to quit the application.
 
-- **Customizable Reminder Interval**: Open settings from the system tray and customize the interval for showing the GIF reminder.
+- **Customizable Reminder Interval**: Open settings from the system tray and customize the interval for showing the GIF reminder. (Default 1 minute)
 
 ## Download
 
