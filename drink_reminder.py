@@ -20,6 +20,7 @@ import os
 gif_path = os.path.join(os.path.dirname(__file__), 'cat-broken-cat.gif')
 icon_path = os.path.join(os.path.dirname(__file__), 'drink.ico')
 
+
 # Function to create a window that displays the GIF
 def show_gif():
     print("show_gif called")  # Debug statement
@@ -72,14 +73,12 @@ def show_gif():
 
 # Schedule the GIF reminders
 def setup_schedule():
-    schedule.every(15).seconds.do(show_gif)
+    def schedule_gif():
+        show_gif()
+        root.after(15000, schedule_gif)  # Schedule the next reminder after 15 seconds
 
     print("Scheduler started.")  # Debug statement
-
-    while True:
-        print("Checking schedule...")  # Debug statement
-        schedule.run_pending()
-        time.sleep(1)
+    root.after(15000, schedule_gif)  # Start the first reminder
 
 
 # Function to quit the application
