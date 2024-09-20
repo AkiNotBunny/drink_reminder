@@ -9,9 +9,8 @@ Libraries: Tkinter, Pillow, Pystray, Schedule.
 - **GIF Reminder**: Displays a fun GIF to remind you to drink water. It automatically closes after 10 seconds or you could close the display yourself. It does NOT close the application.
 
 - **System Tray Icon**: Minimizes to the system tray with an option to quit the application.
-  
-### WIP
-- **Customizable Reminder Interval**: Easily adjustable timing for reminders.
+
+- **Customizable Reminder Interval**: Open settings from the system tray and customize the interval for showing the GIF reminder.
 
 ## Download
 
