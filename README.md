@@ -1,6 +1,6 @@
 # Drink Reminder Program
 
-A simple drink reminder application built using Python. This program helps you (actually myself) remember to drink water at regular intervals with a hydrated cat.
+A simple drink reminder application built using Python. This program helps you (actually myself) remember to drink water at regular intervals with a (somewhat) hydrated cat.
 
 ## Features
 
