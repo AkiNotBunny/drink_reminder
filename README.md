@@ -13,6 +13,11 @@ Libraries: Tkinter, Pillow, Pystray, Schedule.
 ### WIP
 - **Customizable Reminder Interval**: Easily adjustable timing for reminders.
 
+## Download
+
+You can download the latest version of the Drink Reminder application from the [Releases page](https://github.com/AkiNotBunny/drink_reminder/releases).
+
+
 ## Credits
 
 Cat GIF shown as a reminder: 'Cat Broken Cat GIF', Tenor, https://tenor.com/byRd2.gif
