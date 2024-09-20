@@ -120,6 +120,7 @@ def open_settings():
 def quit_app(icon, item):
     icon.stop()
     root.quit()
+    root.destroy()  # Ensures the root window is destroyed.
 
 
 # Create the system tray icon
