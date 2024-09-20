@@ -7,7 +7,7 @@ System Tray Application Icon: 'Drink free icon', by Freepik - Flaticon, https://
 """
 
 import tkinter as tk
-from tkinter import Toplevel
+from tkinter import Toplevel, messagebox
 from PIL import Image, ImageTk
 import schedule
 import time
@@ -19,6 +19,9 @@ import os
 # Path to the GIF and icon
 gif_path = os.path.join(os.path.dirname(__file__), 'cat-broken-cat.gif')
 icon_path = os.path.join(os.path.dirname(__file__), 'drink.ico')
+
+reminder_interval = 15000
+scheduled_job = None
 
 
 # Function to create a window that displays the GIF
@@ -72,13 +75,47 @@ def show_gif():
 
 
 # Schedule the GIF reminders
-def setup_schedule():
-    def schedule_gif():
-        show_gif()
-        root.after(15000, schedule_gif)  # Schedule the next reminder after 15 seconds
+def schedule_gif():
+    global scheduled_job
+    show_gif()
+    scheduled_job = root.after(reminder_interval, schedule_gif)  # Schedule the next reminder after 15 seconds
 
+
+def setup_schedule():
+    global scheduled_job
     print("Scheduler started.")  # Debug statement
-    root.after(15000, schedule_gif)  # Start the first reminder
+    scheduled_job = root.after(reminder_interval, schedule_gif)  # Start the first reminder
+
+
+def open_settings():
+    global reminder_interval
+    settings_window = Toplevel()
+    settings_window.title("Settings")
+
+    def save_settings():
+        global reminder_interval, scheduled_job
+        try:
+            new_interval = int(entry.get()) * 1000  # Convert seconds to milliseconds
+            if new_interval > 0:
+                reminder_interval = new_interval
+                if scheduled_job:  # Cancel the existing scheduled job
+                    root.after_cancel(scheduled_job)  # Cancel the previous job
+                scheduled_job = root.after(reminder_interval, schedule_gif)  # Schedule the next one
+                settings_window.destroy()  # Close the dialog
+            else:
+                messagebox.showerror("Error", "Please enter a positive number.")
+        except ValueError:
+            messagebox.showerror("Error", "Invalid input. Please enter a number.")
+
+    label = tk.Label(settings_window, text="Set reminder interval (seconds):")
+    label.pack(pady=10)
+
+    entry = tk.Entry(settings_window)
+    entry.insert(0, str(reminder_interval // 1000))  # Default to current interval in seconds
+    entry.pack(pady=10)
+
+    save_button = tk.Button(settings_window, text="Save", command=save_settings)
+    save_button.pack(pady=10)
 
 
 # Function to quit the application
@@ -90,6 +127,7 @@ def quit_app(icon, item):
 # Create the system tray icon
 def create_tray_icon():
     icon = Icon("drink_reminder", Image.open(icon_path), "Drink Reminder", menu=pystray.Menu(
+        MenuItem("Settings", open_settings),
         MenuItem("Quit", quit_app)
     ))
     icon.run()
