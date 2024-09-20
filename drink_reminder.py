@@ -9,8 +9,6 @@ System Tray Application Icon: 'Drink free icon', by Freepik - Flaticon, https://
 import tkinter as tk
 from tkinter import Toplevel, messagebox
 from PIL import Image, ImageTk
-import schedule
-import time
 import threading
 import pystray
 from pystray import MenuItem, Icon
