@@ -2,7 +2,7 @@
 
 A simple drink reminder application built using Python. This program helps you (actually myself) remember to drink water at regular intervals with a hydrated cat.
 
-Libraries: Tkinter, Pillow, Pystray, Schedule.
+Libraries: Tkinter, Pillow(PIL), Threading, Pystray, OS.
 
 ## Features
 
